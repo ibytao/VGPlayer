@@ -16,7 +16,9 @@ extension Timer {
     }
     
     @objc class func vgPlayer_blcokInvoke(_ timer: Timer) {
-        let block: ()->() = timer.userInfo as! ()->()
+        guard let block: ()->() = timer.userInfo as? ()->() else {
+            return
+        }
         block()
     }
 
